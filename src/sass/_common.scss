@@ -16,7 +16,7 @@
 
 .gallery {
     display: grid;
-    grid-template-columns: 650px 650px 650px;
+    grid-template-columns: 0fr 0fr 0fr 0fr;
     grid-template-rows: auto;
     gap: 15px;
 }
@@ -29,7 +29,7 @@
 .info {
     display: flex;
         text-align: center;
-        font-size: 21px;
+        font-size: 15px;
         justify-content: space-around;
 }
 
@@ -71,8 +71,8 @@ button:hover {
     background-position: right center;
 }
 img {
-    width: 650px;
-    height: 450px;
+    width: 350px;
+    height: 250px;
 }
 
 .search-form {

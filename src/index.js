@@ -1,11 +1,11 @@
 import SimpleLightbox from "simplelightbox";
 // Додатковий імпорт стилів
 import "simplelightbox/dist/simple-lightbox.min.css";
-// import axios from "axios";
+
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { NewsApiService } from "./news-servise";
 import { markupGallery } from "./markup-gallery"
-// import { LoadMoreBtn } from "./load-more-btn"
+
 const searchForm = document.querySelector('.search-form');
 const loadMoreBtn = document.querySelector('.load-more');
 export const myGallery = document.querySelector('.gallery');
@@ -20,45 +20,53 @@ loadMoreBtn.addEventListener('click', onLoadMore);
 // let sertchQuery = '';
 // buttonNone();
 
-function onSearch(event) {
+async function onSearch(event) {
+
     event.preventDefault();
     clearCards();
-    
-    newsApiService.query = event.currentTarget.elements.searchQuery.value;
 
+    newsApiService.query = event.currentTarget.elements.searchQuery.value;
     newsApiService.resetPage();
-    newsApiService.fetchArticles().then(({ hits, totalHits }) => {
-        
-        if (totalHits === 0) {
+    try {
+        const awaitFetch = await newsApiService.fetchArticles();
+        console.log(awaitFetch.data);
+        console.log(awaitFetch.data.hits);
+        console.log(awaitFetch.data.totalHits);
+
+        if (awaitFetch.data.totalHits === 0) {
             loadMoreBtn.classList.add("is-hidden")
             Notify.failure('"Sorry, there are no images matching your search query. Please try again."')
             return;
         }
-        Notify.info(`Hooray! We found ${totalHits} images.`)
-        markupGallery(hits);
+        Notify.info(`Hooray! We found ${awaitFetch.data.totalHits} images.`)
+        markupGallery(awaitFetch.data.hits);
         loadMoreBtn.classList.remove("is-hidden");
         lightbox.refresh();
+    } catch (error) {
+        console.log(error.message);
     }
-        
-    );
 }
 
-function onLoadMore() {
-    newsApiService.fetchArticles().then(({ hits, totalHits }) => {
-        markupGallery(hits);
-        console.log(totalHits);
-        if (newsApiService.per_page * newsApiService.page > totalHits) {
+async function onLoadMore() {
+    newsApiService.incrementPage();
+    try {
+        const awaitFetch = await newsApiService.fetchArticles();
+        markupGallery(awaitFetch.data.hits);
+        console.log(awaitFetch.data.totalHits);
+        if (newsApiService.per_page * newsApiService.page > awaitFetch.data.totalHits) {
             loadMoreBtn.classList.add("is-hidden");
             Notify.failure(`"We're sorry, but you've reached the end of search results`);
         }
-        
+
         lightbox.refresh();
         myScroll()
-    }
-        
-    );   
+    } catch (error) {
+        console.log(error.message);
 }
-        
+    
+}
+
+
 function clearCards() {
     myGallery.innerHTML = '';
 }

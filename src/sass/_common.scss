@@ -2,19 +2,23 @@
 
 .is-hidden { 
     display: none;
+    // display: flex;
+//         justify-content: center;
+//         margin-top: 10px;
+//         margin-bottom: 10px;
 } 
+// .load-more {
+//     display: flex;
+//         justify-content: center;
+//         margin-top: 10px;
+//         margin-bottom: 10px;
+// }
 
 .gallery {
     display: grid;
     grid-template-columns: 650px 650px 650px;
     grid-template-rows: auto;
     gap: 15px;
-
-
-
-    // display: flex;
-    // flex-wrap: wrap;
-    // gap: 50px;
 }
 
 .info-item {
@@ -32,18 +36,55 @@
 .photo-card {
     box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%)
 }
-// button {
-    
-//     font-family: monospace;
-//         font-size: 16px;
-//         font-weight: 700;
-//         background-color: #ff6b0a;
-//         color: #fff;
-//         padding: 2px 6px;
-//         border-radius: 2px;
-        
-// }
+input {
+    display: block;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #080808;
+    background-color: rgb(225, 235, 255);
+    background-clip: padding-box;
+    border: 1px solid #8b8b8b;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+button {
+    text-decoration: none;
+        display: inline-block;
+        color: rgb(236, 236, 236);
+        padding: 5px 15px;
+        margin: 0px 10px;
+        border-radius: 10px;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background-image: linear-gradient(to right, #9EEFE1 0%, #4830F0 51%, #9EEFE1 100%);
+        background-size: 200% auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+        transition: .5s;
+}
+
+button:hover {
+    background-position: right center;
+}
 img {
     width: 650px;
     height: 450px;
 }
+
+.search-form {
+    display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+}
+
+// .load-more {
+//     display: flex;
+//     justify-content: center;
+//     margin-top: 10px;
+//     margin-bottom: 10px;
+// }

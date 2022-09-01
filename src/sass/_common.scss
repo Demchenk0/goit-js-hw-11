@@ -5,7 +5,45 @@
 } 
 
 .gallery {
+    display: grid;
+    grid-template-columns: 650px 650px 650px;
+    grid-template-rows: auto;
+    gap: 15px;
+
+
+
+    // display: flex;
+    // flex-wrap: wrap;
+    // gap: 50px;
+}
+
+.info-item {
+    color: #000;
+    font-family: 'Lobster';
+}
+
+.info {
     display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
+        text-align: center;
+        font-size: 21px;
+        justify-content: space-around;
+}
+
+.photo-card {
+    box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%)
+}
+// button {
+    
+//     font-family: monospace;
+//         font-size: 16px;
+//         font-weight: 700;
+//         background-color: #ff6b0a;
+//         color: #fff;
+//         padding: 2px 6px;
+//         border-radius: 2px;
+        
+// }
+img {
+    width: 650px;
+    height: 450px;
 }
